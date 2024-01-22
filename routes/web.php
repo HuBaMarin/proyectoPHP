@@ -18,6 +18,9 @@ Route::get('/', function () {
     return view('main');
 });
 
+Route::view("proyectos", "proyectos")
+->middleware("auth");
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
