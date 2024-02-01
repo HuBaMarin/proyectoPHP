@@ -20,7 +20,7 @@ services:
         image: phpmyadmin
         container_name: phpmyadmin  #Si no te pone por defecto el nombre_directorio-nombre_servicio
         ports:
-            - ${PORT_PHPMYADMIN}:80
+            - ${DB_PORT_PHPMYADMIN}:80
         depends_on:
             - mysql
         environment:

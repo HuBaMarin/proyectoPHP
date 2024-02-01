@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
-    //
     public function index()
     {
         $numero = rand(1,10);

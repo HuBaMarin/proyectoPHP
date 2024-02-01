@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AlumnoController;
+use App\Http\Controllers\ProfesorController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,7 +21,13 @@ Route::get('/', function () {
 });
 
 Route::view("proyectos", "proyectos")
-->middleware("auth");
+->middleware("auth")
+->name("proyectos");
+
+Route::resource("profesores", ProfesorController::class);
+
+
+Route::resource("alumnos", AlumnoController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
