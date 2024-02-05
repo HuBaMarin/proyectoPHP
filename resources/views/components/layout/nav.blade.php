@@ -5,7 +5,7 @@
     <a href="#" class="btn ">Contacto</a>
     @auth
     <a href="#  " class="btn ">Proyectos</a>
-    <a href="#" class="btn ">Alumnos</a>
-    <a href="#" class="btn ">Profesores</a>
+    <a href="alumnos" class="btn ">Alumnos</a>
+    <a href="profesores" class="btn ">Profesores</a>
     @endauth
 </nav>

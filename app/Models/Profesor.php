@@ -9,6 +9,6 @@ use mysql_xdevapi\Table;
 class Profesor extends Model
 {
     use HasFactory;
-    protected $table="profesors";
+    protected $table="profesores";
     protected $fillable=['nombre','email','dir','dni'];
 }

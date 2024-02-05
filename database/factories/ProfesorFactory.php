@@ -30,7 +30,7 @@ class ProfesorFactory extends Factory
         $letras="TRWAGMYFPDXBNJZSQVHLCKE";
         $num_dni=fake()->randomNumber("8",true);
         //$num_dni=$num_dni<0?$num_dni:"";
-        \Laravel\Prompts\info("numero $num_dni");
+        info("numero $num_dni");
         $letra=$letras[$num_dni%23];
         return "$num_dni-$letra";
     }

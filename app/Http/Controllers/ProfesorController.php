@@ -80,7 +80,7 @@ class ProfesorController extends Controller
         $profesor= Profesor::find($id);
 
         //borrar elementos
-        \Laravel\Prompts\info("Profesor a borrar: ".$profesor);
+        info("Profesor a borrar: ".$profesor);
         $profesor->delete();
         $profesores = Profesor::all();
         return view("profesores.listado", compact("profesores"));

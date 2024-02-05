@@ -17,7 +17,18 @@ class AlumnoFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            "nombre"=>fake()->name("male"),
+            "dir"=>fake()->address(),
+            "email"=>fake()->email(),
+            "dni"=>$this->dni()
         ];
+    }
+    private function dni()
+    {
+        $letras="TRWAGMYFPDXBNJZSQVHLCKE";
+        $num_dni=fake()->randomNumber("8",true);
+            info("numero $num_dni");
+        $letra=$letras[$num_dni%23];
+        return "$num_dni-$letra";
     }
 }

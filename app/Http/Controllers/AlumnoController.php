@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorealumnoRequest;
 use App\Http\Requests\UpdatealumnoRequest;
-use App\Models\alumno;
+use App\Models\Alumno;
 
 class AlumnoController extends Controller
 {
@@ -13,8 +13,8 @@ class AlumnoController extends Controller
      */
     public function index()
     {
-        $alumno= alumno::all();
-        return view("alumnos.listado", compact("alumno"));
+        $alumnos= Alumno::all();
+        return view("alumnos.listado", compact("alumnos"));
     }
 
     /**
@@ -32,24 +32,25 @@ class AlumnoController extends Controller
     {
         //
         $datos = $request->input();
-        $alumno = new alumno($datos);
+        $alumno = new Alumno($datos);
         $alumno->save();
-        \Laravel\Prompts\info("Alumno: ".$alumno);
+        info("Alumno: ".$alumno);
         return redirect(route("alumnos.index"));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(alumno $alumno)
+    public function show(int $id)
     {
-        //
+        $alumno = Alumno::find($id);
+        return view("alumnos.edit",compact("alumno"));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(alumno $alumno)
+    public function edit(Alumno $alumno)
     {
         //
     }
@@ -57,16 +58,25 @@ class AlumnoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatealumnoRequest $request, alumno $alumno)
+    public function update(UpdatealumnoRequest $request, int $id)
     {
-        //
+        $alumno = Alumno::find($id);
+        $alumno->update($request->input());
+        $alumnos = Alumno::all();
+        return view("alumnos.listado",compact("alumnos"));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(alumno $alumno)
+    public function destroy(int $id)
     {
-        //
+        $alumno= Alumno::find($id);
+
+        //borrar elementos
+        info("Alumno a borrar: ".$alumno);
+        $alumno->delete();
+        $alumnos = Alumno::all();
+        return view("alumnos.listado", compact("alumnos"));
     }
 }
