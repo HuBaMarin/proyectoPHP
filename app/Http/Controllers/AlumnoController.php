@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorealumnoRequest;
+use App\Http\Requests\StoreAlumnoRequest;
 use App\Http\Requests\UpdatealumnoRequest;
 use App\Models\Alumno;
 
@@ -28,13 +28,15 @@ class AlumnoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorealumnoRequest $request)
+    public function store(StoreAlumnoRequest $request)
     {
         //
         $datos = $request->input();
         $alumno = new Alumno($datos);
+        info ("AlumnoController store -$alumno-");
         $alumno->save();
         info("Alumno: ".$alumno);
+        session()->flash("info","se ha creado correctamente");
         return redirect(route("alumnos.index"));
     }
 
@@ -63,6 +65,7 @@ class AlumnoController extends Controller
         $alumno = Alumno::find($id);
         $alumno->update($request->input());
         $alumnos = Alumno::all();
+        session()->flash("info","se ha actualizado correctamente!");
         return view("alumnos.listado",compact("alumnos"));
     }
 
@@ -76,6 +79,7 @@ class AlumnoController extends Controller
         //borrar elementos
         info("Alumno a borrar: ".$alumno);
         $alumno->delete();
+        session()->flash("info","se ha borrado correctamente!");
         $alumnos = Alumno::all();
         return view("alumnos.listado", compact("alumnos"));
     }

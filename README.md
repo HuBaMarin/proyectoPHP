@@ -84,12 +84,11 @@ php artisan route:list --path=alumnos
 > resources/views/components/layout/nav.blade.php
 
 ````bash
- <a href="alumnos" class="btn ">Alumnos</a>
+<a href="alumnos" class="btn ">Alumnos</a>
 <a href="profesores" class="btn ">Profesores</a>
 ````
 
 ## Creación, modificación y visualización de alumnos
-
 
 ## Listado (Visualización)
 
@@ -105,20 +104,53 @@ GET alumnos => AlumnoController@index
         return view("alumnos.listado", compact("alumnos"));
     }
 ```
->El enlace para mostrar el listado
+
+> El enlace para mostrar el listado
+
 ```bash
  <a href="{{route('alumnos.create')}}">
             <button type="button" class="btn btn-primary items-center ">Nuevo alumno</button>
 </a>
 ```
->creación de tabla con todos los elementos de la tabla
+
+> creación de tabla con todos los elementos de la tabla
+
 ```bash
- <th>Nombre</th>
+<th>Nombre</th>
 <th>Email</th>
 <th>Direccion</th>
 <th>DNI</th>
 ```
-> recorrer la variable creada en el index del controlador 
+
+> recorrer la variable creada en el index del controlador
+
 ```bash
 > @foreach($alumnos as $alumno)
+```
+
+> el form tiene que redirigir a create del controller
+
+```bash
+<a href="{{route('alumnos.create')}}">
+```
+
+> comprobar storealumnorequest y updatealumnorequest para permitir acciones de creación y modificación
+
+## Crear script para comprobar si se quiere borrar elemento
+
+```bash
+ <button type="submit" onclick="confirmDelete(event, '{{$alumno->nombre}}')">
+```
+
+> script para el codigo de confirmDelete
+
+```bash
+ <script>
+            function confirmDelete(event, nombre) {
+                console.log(`borrando ${nombre}`)
+                event.preventDefault();
+                if (confirm(`¿Estás seguro de que quieres eliminar ${nombre}?`))
+                    document.getElementById('form-delete').submit();
+            }
+</script>
 ```

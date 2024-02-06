@@ -1,14 +1,14 @@
 @extends("layout.layout")
 @section("contenido")
+
 {{$errors}}<!--cuando hay algun error, visualizo-->
     <div class="flex items-center justify-center h-full p-5 rounded-2xl">
         <div class="w-full max-w-md h-full">
 
-            <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" action="{{route("alumnos.update", $alumno->id)}}"
+            <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-10" action="{{route("alumnos.update", $alumno->id)}}"
                   method="post">
                 @method("PATCH")
                 @csrf
-                <!-- <x-input-label></x-input-label> -->
                 <label for="nombre">Nombre</label>
                 <input type="text" name="nombre" value="{{$alumno->nombre}}" id="nombre">
                 <div class="text-sm text-red">
